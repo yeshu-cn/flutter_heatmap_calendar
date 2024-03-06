@@ -128,7 +128,7 @@ class _HeatMap extends State<HeatMap> {
   Widget _scrollableHeatMap(Widget child) {
     return widget.scrollable
         ? SingleChildScrollView(
-            reverse: true,
+            reverse: false,
             scrollDirection: Axis.horizontal,
             child: child,
           )
