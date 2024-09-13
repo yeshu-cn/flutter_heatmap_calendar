@@ -60,7 +60,7 @@ class _HeatMapExample extends State<HeatMapExample> {
                   child: HeatMap(
                     scrollable: true,
                     showText: true,
-                    weekStartsWith: 6,
+                    weekStartsWith: 1,
                     colorMode:
                         isOpacityMode ? ColorMode.opacity : ColorMode.color,
                     datasets: heatMapDatasets,

@@ -87,6 +87,8 @@ class HeatMapPage extends StatelessWidget {
   /// Default to 7 (the week starts wih Sunday).
   final int weekStartsWith;
 
+  bool showWeekAndMonthLabels = true;
+
   HeatMapPage({
     Key? key,
     required this.colorMode,
@@ -104,6 +106,7 @@ class HeatMapPage extends StatelessWidget {
     this.margin,
     this.showText,
     this.weekStartsWith = 7,
+    this.showWeekAndMonthLabels = true,
   })  : _dateDifferent = endDate.difference(startDate).inDays,
         maxValue = DatasetsUtil.getMaxValue(datasets),
         super(key: key);
@@ -176,23 +179,29 @@ class HeatMapPage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         // Show week labels to left side of heatmap.
-        HeatMapWeekText(
-          margin: margin,
-          fontSize: fontSize,
-          size: size,
-          fontColor: labelColor,
-          weekDayLabels: _localizedWeekDayLabels,
+        Visibility(
+          visible: showWeekAndMonthLabels,
+          child: HeatMapWeekText(
+            margin: margin,
+            fontSize: fontSize,
+            size: size,
+            fontColor: labelColor,
+            weekDayLabels: _localizedWeekDayLabels,
+          ),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Show month labels to top of heatmap.
-            HeatMapMonthText(
-              firstDayInfos: _firstDayInfos,
-              margin: margin,
-              fontSize: fontSize,
-              fontColor: labelColor,
-              size: size,
+            Visibility(
+              visible: showWeekAndMonthLabels,
+              child: HeatMapMonthText(
+                firstDayInfos: _firstDayInfos,
+                margin: margin,
+                fontSize: fontSize,
+                fontColor: labelColor,
+                size: size,
+              ),
             ),
 
             // Heatmap itself.
